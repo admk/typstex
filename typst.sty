@@ -1,0 +1,32 @@
+\ProvidesPackage{typst}[2024/12/20 v0.1 Embed Typst in LaTeX]
+\RequirePackage{graphicx}
+\RequirePackage{filecontents}
+\RequirePackage{xparse}
+
+\makeatletter
+\newcommand{\typstflags}{}
+\newcounter{@typstsrc}
+
+\begin{filecontents*}{typst_premble.typ}
+#set page(width: auto, height: auto, margin: 0em)
+\end{filecontents*}
+
+\NewDocumentEnvironment{typst}{m}{%
+    \stepcounter{@typstsrc}
+    \def\@typstfn{\jobname-\the@typstsrc}%
+    \csname filecontents*\endcsname[overwrite]{\@typstfn.typ}%
+}{%
+    \csname endfilecontents*\endcsname%
+    \IfFileExists{\@typstfn.typ}{%
+        \immediate\write18{cat $TEXMF_OUTPUT_DIRECTORY/typst_premble.typ $TEXMF_OUTPUT_DIRECTORY/\@typstfn.typ > $TEXMF_OUTPUT_DIRECTORY/\@typstfn.alt.typ}
+        \immediate\write18{typst compile \typstflags $TEXMF_OUTPUT_DIRECTORY/\@typstfn.alt.typ $TEXMF_OUTPUT_DIRECTORY/\@typstfn.pdf > $TEXMF_OUTPUT_DIRECTORY/\@typstfn.log}
+    }{%
+        \PackageError{typst}{Failed to write Typst source code for \@typstfn.typ.}{}
+    }
+    \IfFileExists{\@typstfn.pdf}{%
+        \includegraphics[#1]{\@typstfn.pdf}%
+    }{%
+        \PackageError{typst}{Failed to compile Typst source code for \@typstfn.typ.}{}
+    }
+}
+\makeatother
