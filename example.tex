@@ -3,22 +3,37 @@
 
 \begin{document}
 
-\begin{figure}[h]
-    \begin{typst}{}
-    == Hello
-    World!
-    - This is a *test*.
-    \end{typst}
-    \caption{Hello World!}
-\end{figure}
+\begin{filecontents*}[overwrite]{typst_premble.typ}
+#set page(width: auto, height: auto, margin: 0.3em)
+#set text(size: 10pt)
+\end{filecontents*}
 
 \begin{figure}[h]
-    \begin{typst}{}
-        $ E = m c^2 $
+    \centering
+    \begin{typst}{scale=1}
+    #set text(font: "New Computer Modern")
+    #box(width: 20em, inset: 0.5em, stroke: black + 0.1em)[
+        Let $a$, $b$, and $c$ be the side
+        lengths of right-angled triangle.
+        Then, we know that:
+        $ a^2 + b^2 = c^2 $
+
+        Prove by induction:
+        $ sum_(k=1)^n k = (n(n+1)) / 2 $
+    ]
     \end{typst}
-    \caption{Hello World!}
+    \caption{Hello, world!}
 \end{figure}
 
-asdf
+\renewcommand{\typstflags}{--input a=b}
+\begin{figure}[h]
+    \centering
+    \begin{typst}{scale=1}
+        - Typst compilation info:
+            - version: #sys.version
+            - flags: #sys.inputs
+    \end{typst}
+    \caption{Passing flags to the typst compiler.}
+\end{figure}
 
 \end{document}
