@@ -1,11 +1,30 @@
 # TypsTeX
 
 TypsTeX is a LaTeX package
-that allows you to **embed Typst code in LaTeX documents**.
+that allows you to **embed [Typst][typst] code in [LaTeX][latex] documents**.
 Typst code wrapped in the `typst` environment
 is dynamically compiled
 and the resulting output is seamlessly integrated
 as PDF images in your LaTeX document.
+
+## Why?
+
+[LaTeX][latex] is a powerful typesetting system,
+but also notoriously difficult to work with,
+especially for complex layouts and graphics.
+[Typst][typst] is a much easier to use markup-based typesetting system
+for the sciences.
+It has powerful language features
+for creating beautiful [documents][example_docs],
+figures [[1][example_figs1], [2][example_figs2]],
+and [plots][example_plots].
+Unfortunately,
+most, if not all, publishers are reluctant to accept Typst files,
+and conferences do not offer official Typst templates.
+This package bridges the gap between LaTeX and Typst,
+by allowing you to embed Typst code in LaTeX documents.
+You can now typeset your beautiful Typst figures and tables
+in your LaTeX documents directly.
 
 ## Features
 
@@ -34,7 +53,7 @@ and include it in your document:
 ### Typst Code Snippet
 
 Wrap your Typst code in the typst environment. Example:
-```
+```latex
 \begin{typst}{scale=1}
     #set text(size: 12pt)
     Hello, Typst in LaTeX!
@@ -90,9 +109,17 @@ Bugs:
 - [ ] `typst compile` log files are not written for unknown reasons.
 
 Features that may be added in the future:
+- [ ] Include typst files by path.
 - [ ] Unit tests.
 - [ ] Better error handling and logging.
 - [ ] A gallery of examples and use cases.
 - [ ] CI workflow for automated testing and gallery compilation.
 - [ ] Custom figure names for Typst output.
 - [ ] Inline LaTeX commands in Typst code (I don't know if this is possible).
+
+[typst]: https://typst.app/docs/
+[latex]: https://www.latex-project.org/
+[example_docs]: https://typst.app/universe/search/?kind=templates
+[example_figs1]: https://github.com/cetz-package/cetz
+[example_figs2]: https://github.com/Jollywatt/typst-fletcher
+[example_plots]: https://github.com/cetz-package/cetz-plot
