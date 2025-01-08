@@ -109,6 +109,7 @@ Bugs:
 - [ ] `typst compile` log files are not written for unknown reasons.
 
 Features that may be added in the future:
+- [ ] `typst query` support.
 - [ ] Include typst files by path.
 - [ ] Unit tests.
 - [ ] Better error handling and logging.
