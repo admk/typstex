@@ -84,7 +84,7 @@ Customize the Typst compiler flags by redefining the `\typstflags` command:
      It requires `--shell-escape` enabled in LaTeX for external command execution.
   2. The output PDF will embed the rendered Typst content.
 
-### Structure
+## Structure
 
 - `typst.sty`:
   This is the LaTeX package file that defines the typst environment.
